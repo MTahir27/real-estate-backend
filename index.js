@@ -27,9 +27,10 @@ app.post("/registerUser", async (request, response) => {
   response.json(user);
 });
 
-app.get("/getuser", (request, response) => {
-  const { email } = request.body;
-  UserModal.find({ email: email }, (error, result) => {
+app.get("/getUser", (request, response) => {
+  const { firebaseId } = request.body;
+  console.log("Firebase Id =>" + firebaseId);
+  UserModal.find({ firebaseId: firebaseId }, (error, result) => {
     if (error) {
       response.json(error);
     } else {
