@@ -1,9 +1,8 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+
 try {
-  mongoose.connect(
-    "mongodb+srv://root:root@cluster0.hoz8xpg.mongodb.net/rea?retryWrites=true&w=majority"
-  );
+  mongoose.connect(process.env.DB_URL);
   console.log("Database Connection Successfull");
 } catch (error) {
   (error) => console.log(error);
@@ -14,6 +13,19 @@ const app = express();
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
+
+const UserModal = require("./Models/Users");
+
+app.get("/", (request, response) => {
+  response.send("Wellcome to Real Estate Serve");
+});
+
+app.post("/createUser", async (request, response) => {
+  const user = request.body;
+  const newUser = new UserModal(user);
+  await newUser.save();
+  response.json(user);
+});
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server Run on ${process.env.PORT || 8000} Port.`);
