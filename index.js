@@ -20,11 +20,22 @@ app.get("/", (request, response) => {
   response.send("Wellcome to Real Estate Serve");
 });
 
-app.post("/createuser", async (request, response) => {
+app.post("/registerUser", async (request, response) => {
   const user = request.body;
   const newUser = new UserModal(user);
   await newUser.save();
   response.json(user);
+});
+
+app.get("/getuser", (request, response) => {
+  const { email } = request.body;
+  UserModal.find({ email: email }, (error, result) => {
+    if (error) {
+      response.json(error);
+    } else {
+      response.json(result);
+    }
+  });
 });
 
 app.listen(process.env.PORT || 8000, () => {
