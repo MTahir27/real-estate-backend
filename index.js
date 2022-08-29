@@ -20,7 +20,7 @@ app.get("/", (request, response) => {
   response.send("Wellcome to Real Estate Serve");
 });
 
-app.post("/createUser", async (request, response) => {
+app.post("/createuser", async (request, response) => {
   const user = request.body;
   const newUser = new UserModal(user);
   await newUser.save();
