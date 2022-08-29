@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema(
     },
     userName: {
       type: String,
-      unique: true,
       required: true,
     },
     email: {
@@ -23,6 +22,11 @@ const UserSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       require: true,
+    },
+    firebaseId: {
+      type: String,
+      require: true,
+      unique: true,
     },
   },
   { timestamps: true }
