@@ -6,6 +6,10 @@ const PropertySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   price: {
     type: mongoose.Schema.Types.Decimal128,
     require: true,
