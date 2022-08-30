@@ -49,7 +49,7 @@ app.post("/addProperty", async (request, response) => {
 });
 
 app.get(`/getProperty`, (request, response) => {
-  UserModal.find({}, (error, property) => {
+  PropertyModal.find({}, (error, property) => {
     if (error) {
       response.json(error);
     } else {
