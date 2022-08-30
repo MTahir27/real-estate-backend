@@ -48,6 +48,16 @@ app.post("/addProperty", async (request, response) => {
   response.json(property);
 });
 
+app.get(`/getProperty`, (request, response) => {
+  UserModal.find({}, (error, property) => {
+    if (error) {
+      response.json(error);
+    } else {
+      response.json(property);
+    }
+  });
+});
+
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server Run on ${process.env.PORT || 8000} Port.`);
 });
