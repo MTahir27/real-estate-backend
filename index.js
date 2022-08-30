@@ -15,11 +15,13 @@ const cors = require("cors");
 app.use(cors());
 
 const UserModal = require("./Models/Users");
+const PropertyModal = require("./Models/Property");
 
 app.get("/", (request, response) => {
   response.send("Wellcome to Real Estate Serve");
 });
 
+// Auth Crud
 app.post("/registerUser", async (request, response) => {
   const user = request.body;
   const newUser = new UserModal(user);
@@ -29,7 +31,6 @@ app.post("/registerUser", async (request, response) => {
 
 app.get(`/getUser/:firebaseId`, (request, response) => {
   const id = request.params.firebaseId;
-  console.log(id);
   UserModal.find({ firebaseId: id }, (error, user) => {
     if (error) {
       response.json(error);
@@ -37,6 +38,14 @@ app.get(`/getUser/:firebaseId`, (request, response) => {
       response.json(user);
     }
   });
+});
+
+// Property Crud
+app.post("/addProperty", async (request, response) => {
+  const property = request.body;
+  const newProperty = new PropertyModal(property);
+  await newProperty.save();
+  response.json(property);
 });
 
 app.listen(process.env.PORT || 8000, () => {
