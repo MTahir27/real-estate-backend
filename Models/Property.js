@@ -8,7 +8,7 @@ const PropertySchema = new mongoose.Schema(
       required: true,
     },
     user: {
-      type: Array,
+      type: Object,
       required: true,
     },
     price: {
