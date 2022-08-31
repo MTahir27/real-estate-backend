@@ -23,10 +23,6 @@ const PropertySchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
-    bedRooms: {
-      type: Number,
-      require: true,
-    },
     bathRooms: {
       type: Number,
       require: true,
