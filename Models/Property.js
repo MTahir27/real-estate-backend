@@ -19,7 +19,7 @@ const PropertySchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
-    rooms: {
+    bedrooms: {
       type: Number,
       require: true,
     },
